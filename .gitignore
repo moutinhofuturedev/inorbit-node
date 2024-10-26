@@ -1,0 +1,33 @@
+# Arquivos de variáveis de ambiente
+.env
+.env.local
+
+# Dependências
+node_modules/
+
+# Builds e binários
+dist/
+build/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Configurações de IDEs e editores
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos temporários e de cache
+.cache/
+tmp/
+.temp/
