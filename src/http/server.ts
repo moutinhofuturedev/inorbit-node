@@ -1,3 +1,7 @@
+import { createCompletionRoute } from '@/http/routes/create-goals-completion-route'
+import { createGoalsRoute } from '@/http/routes/create-goals-route'
+import { createPendingGoalsRoute } from '@/http/routes/get-pending-goals-route'
+import { getWeekSummaryRoute } from '@/http/routes/get-week-summary-route'
 import fastifyCors from '@fastify/cors'
 import fastify from 'fastify'
 import {
@@ -5,10 +9,6 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod'
-import { getWeekSummaryRoute } from './routes//get-week-summary-route'
-import { createCompletionRoute } from './routes/create-goals-completion-route'
-import { createGoalsRoute } from './routes/create-goals-route'
-import { createPendingGoalsRoute } from './routes/get-pending-goals-route'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 

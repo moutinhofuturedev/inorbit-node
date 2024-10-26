@@ -10,13 +10,15 @@
     "start:prod": "node dist/http/server.js",
     "generate": "tsx --env-file .env generate",
     "seed": "tsx --env-file .env src/db/seed.ts",
-    "studio": "npx drizzle-kit studio"
+    "studio": "npx drizzle-kit studio",
+    "commit": "cz"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
+    "cz-conventional-changelog": "^3.3.0",
     "drizzle-kit": "^0.24.2",
     "typescript": "^5.6.2"
   },
@@ -31,5 +33,10 @@
     "postgres": "^3.4.4",
     "tsx": "^4.19.0",
     "zod": "^3.23.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

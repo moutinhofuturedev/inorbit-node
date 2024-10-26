@@ -1,6 +1,6 @@
+import { createGoals } from '@/services/create-goals'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import zod from 'zod'
-import { createGoals } from '../../services/create-goals'
 
 export const createGoalsRoute: FastifyPluginAsyncZod = async app => {
   app.post(

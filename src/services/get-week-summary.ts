@@ -1,7 +1,7 @@
+import { db } from '@/db/connection'
+import { goals, goalsCompleted } from '@/db/schema'
 import dayjs from 'dayjs'
 import { and, desc, eq, gte, lte, sql } from 'drizzle-orm'
-import { db } from '../db/connection'
-import { goals, goalsCompleted } from '../db/schema'
 
 export async function getWeekSummary() {
   const firstDayOfWeek = dayjs().startOf('week').toDate()
