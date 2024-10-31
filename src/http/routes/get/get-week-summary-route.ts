@@ -1,3 +1,4 @@
+import { useAuthenticateUser } from '@/http/hooks/use-auth-user'
 import { getWeekSummary } from '@/services/get-week-summary'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import zod from 'zod'
@@ -6,6 +7,7 @@ export const getWeekSummaryRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/summary',
     {
+      onRequest: [useAuthenticateUser],
       schema: {
         tags: ['summary'],
         description: 'Get week summary',
