@@ -5,6 +5,8 @@ export const envSchema = zod.object({
 
   GITHUB_CLIENT_ID: zod.string(),
   GITHUB_CLIENT_SECRET: zod.string(),
+
+  JWT_SECRET: zod.string(),
 })
 
 export const env = envSchema.parse(process.env)

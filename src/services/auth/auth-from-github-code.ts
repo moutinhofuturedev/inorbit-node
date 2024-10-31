@@ -1,5 +1,6 @@
 import { db } from '@/db/connection'
 import { users } from '@/db/schema'
+import { authenticateUser } from '@/modules/auth-user'
 import {
   getAccessTokenFromCode,
   getUserFromAccessToken,
@@ -28,7 +29,7 @@ export const authenticateFromGithubCode = async ({
   if (userAlreadyExists) {
     userId = result[0].id
   } else {
-    const [insertUsers] = await db
+    const [insertedUser] = await db
       .insert(users)
       .values({
         name: githubUser.name,
@@ -38,6 +39,12 @@ export const authenticateFromGithubCode = async ({
       })
       .returning()
 
-    userId = insertUsers.id
+    userId = insertedUser.id
+  }
+
+  const token = await authenticateUser(userId)
+
+  return {
+    token,
   }
 }
