@@ -2,8 +2,9 @@ import { db } from '@/db/connection'
 import { goals, goalsCompleted } from '@/db/schema'
 import dayjs from 'dayjs'
 import { and, count, eq, gte, lte, sql } from 'drizzle-orm'
+import type { UserIdRequest } from './types/type'
 
-export async function getWeekPendingGoals() {
+export async function getWeekPendingGoals({ userId }: UserIdRequest) {
   const firstDayOfWeek = dayjs().startOf('week').toDate()
   const lastDayOfWeek = dayjs().endOf('week').toDate()
 
@@ -16,7 +17,7 @@ export async function getWeekPendingGoals() {
         createdAt: goals.createdAt,
       })
       .from(goals)
-      .where(lte(goals.createdAt, lastDayOfWeek))
+      .where(and(lte(goals.createdAt, lastDayOfWeek), eq(goals.userId, userId)))
   )
 
   const goalCompletionCounts = db.$with('goal_completion_counts').as(
@@ -26,10 +27,12 @@ export async function getWeekPendingGoals() {
         completionCount: count(goalsCompleted.id).as('completionCount'),
       })
       .from(goalsCompleted)
+      .innerJoin(goals, eq(goals.id, goalsCompleted.goalsId))
       .where(
         and(
           gte(goalsCompleted.createdAt, firstDayOfWeek),
-          lte(goalsCompleted.createdAt, lastDayOfWeek)
+          lte(goalsCompleted.createdAt, lastDayOfWeek),
+          eq(goals.userId, userId)
         )
       )
       .groupBy(goalsCompleted.goalsId)

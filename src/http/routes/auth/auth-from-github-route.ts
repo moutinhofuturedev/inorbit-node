@@ -1,4 +1,4 @@
-import { authenticateFromGithubCode } from '@/services/auth/auth-from-github-code'
+import { authenticateFromGithubCode } from '@/services/auth-from-github-code'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import zod from 'zod'
 
