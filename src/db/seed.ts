@@ -1,14 +1,26 @@
 import dayjs from 'dayjs'
 import { connection, db } from './connection'
-import { goals, goalsCompleted } from './schema'
+import { goals, goalsCompleted, users } from './schema'
 
 const seed = async () => {
   await db.delete(goalsCompleted)
   await db.delete(goals)
+  await db.delete(users)
+
+  const [user] = await db
+    .insert(users)
+    .values({
+      name: 'John Doe',
+      externalAccountId: 1243456,
+      avatarUrl: 'https://avatars.githubusercontent.com/u/1234567?v=4',
+    })
+    .returning()
 
   const goalsIds = await db
     .insert(goals)
-    .values([{ title: 'Acordar cedo', desiredWeeklyFrequency: 5 }])
+    .values([
+      { userId: user.id, title: 'Acordar cedo', desiredWeeklyFrequency: 5 },
+    ])
     .returning()
 
   const startOfWeek = dayjs().startOf('week')

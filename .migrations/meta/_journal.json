@@ -15,6 +15,20 @@
       "when": 1726088349338,
       "tag": "0001_colorful_sabretooth",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729999568937,
+      "tag": "0002_blue_shadow_king",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1730000541606,
+      "tag": "0003_lively_rumiko_fujikawa",
+      "breakpoints": true
     }
   ]
 }
