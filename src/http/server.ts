@@ -1,6 +1,7 @@
 import { env } from '@/env'
 import { authenticateFromGithubRoute } from '@/http/routes/auth/auth-from-github-route'
 import { getPendingGoalsRoute } from '@/http/routes/get/get-pending-goals-route'
+import { getUserRoute } from '@/http/routes/get/get-user-route'
 import { getWeekSummaryRoute } from '@/http/routes/get/get-week-summary-route'
 import { createCompletionRoute } from '@/http/routes/post/create-goals-completion-route'
 import { createGoalsRoute } from '@/http/routes/post/create-goals-route'
@@ -49,6 +50,7 @@ app.register(createCompletionRoute)
 app.register(getPendingGoalsRoute)
 app.register(getWeekSummaryRoute)
 app.register(authenticateFromGithubRoute)
+app.register(getUserRoute)
 
 app
   .listen({
