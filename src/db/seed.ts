@@ -11,6 +11,7 @@ const seed = async () => {
     .insert(users)
     .values({
       name: 'John Doe',
+      email: 'XvR0v@example.com',
       externalAccountId: 1243456,
       avatarUrl: 'https://avatars.githubusercontent.com/u/1234567?v=4',
     })
