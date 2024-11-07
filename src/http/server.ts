@@ -1,3 +1,5 @@
+import { writeFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
 import { env } from '@/env'
 import { authenticateFromGithubRoute } from '@/http/routes/auth/auth-from-github-route'
 import { getPendingGoalsRoute } from '@/http/routes/get/get-pending-goals-route'
@@ -59,3 +61,15 @@ app
   .then(() => {
     console.log('HTTP server running on http://localhost:8001')
   })
+
+if (env.NODE_ENV === 'development') {
+  const specFile = resolve(__dirname, '../../swagger.json')
+
+  app.ready().then(() => {
+    const spec = JSON.stringify(app.swagger(), null, 2)
+
+    writeFile(specFile, spec).then(() => {
+      console.log('Swagger file generated successfully')
+    })
+  })
+}

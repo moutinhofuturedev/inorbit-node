@@ -9,6 +9,7 @@ export const authenticateFromGithubRoute: FastifyPluginAsyncZod = async app => {
       schema: {
         tags: ['auth'],
         description: 'Authenticate user from github code',
+        operationId: 'authenticateFromGithub',
         body: zod.object({
           code: zod.string(),
         }),

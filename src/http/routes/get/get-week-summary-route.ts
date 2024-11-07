@@ -9,8 +9,9 @@ export const getWeekSummaryRoute: FastifyPluginAsyncZod = async app => {
     {
       onRequest: [useAuthenticateUser],
       schema: {
-        tags: ['summary'],
+        tags: ['goals'],
         description: 'Get week summary',
+        operationId: 'getWeekSummary',
         response: {
           200: zod.object({
             summary: zod.object({

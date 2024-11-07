@@ -7,6 +7,11 @@ export const envSchema = zod.object({
   GITHUB_CLIENT_SECRET: zod.string(),
 
   JWT_SECRET: zod.string(),
+
+  NODE_ENV: zod
+    .enum(['development', 'production', 'test'])
+    .optional()
+    .default('production'),
 })
 
 export const env = envSchema.parse(process.env)

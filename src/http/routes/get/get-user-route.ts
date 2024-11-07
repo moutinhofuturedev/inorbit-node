@@ -7,8 +7,9 @@ export const getUserRoute: FastifyPluginAsyncZod = async app => {
     '/user',
     {
       schema: {
-        tags: ['user'],
+        tags: ['auth'],
         description: 'Get authenticated user',
+        operationId: 'getUser',
         response: {
           200: zod.object({
             user: zod.object({
