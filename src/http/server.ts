@@ -5,7 +5,7 @@ import { authenticateFromGithubRoute } from '@/http/routes/auth/auth-from-github
 import { getPendingGoalsRoute } from '@/http/routes/get/get-pending-goals-route'
 import { getUserRoute } from '@/http/routes/get/get-user-route'
 import { getWeekSummaryRoute } from '@/http/routes/get/get-week-summary-route'
-import { createCompletionRoute } from '@/http/routes/post/create-goals-completion-route'
+import { createGoalCompletionRoute } from '@/http/routes/post/create-goals-completion-route'
 import { createGoalsRoute } from '@/http/routes/post/create-goals-route'
 import fastifyCors from '@fastify/cors'
 import fastifyJwt from '@fastify/jwt'
@@ -48,7 +48,7 @@ app.register(fastifySwaggerUi, {
 
 // Registrando todas as minhas services
 app.register(createGoalsRoute)
-app.register(createCompletionRoute)
+app.register(createGoalCompletionRoute)
 app.register(getPendingGoalsRoute)
 app.register(getWeekSummaryRoute)
 app.register(authenticateFromGithubRoute)

@@ -16,17 +16,19 @@ export const getWeekSummaryRoute: FastifyPluginAsyncZod = async app => {
           200: zod.object({
             summary: zod.object({
               completed: zod.number(),
-              total: zod.number(),
-              goalsPerDay: zod.record(
-                zod.string(),
-                zod.array(
-                  zod.object({
-                    id: zod.string(),
-                    title: zod.string(),
-                    completedAt: zod.string(),
-                  })
+              total: zod.number().nullable(),
+              goalsPerDay: zod
+                .record(
+                  zod.string(),
+                  zod.array(
+                    zod.object({
+                      id: zod.string(),
+                      title: zod.string(),
+                      completedAt: zod.string(),
+                    })
+                  )
                 )
-              ),
+                .nullable(),
             }),
           }),
         },
